@@ -2,6 +2,7 @@ import '@/css/prism.css';
 import '@/css/tailwind.css';
 import '@fontsource/mukta';
 
+import { Analytics } from '@vercel/analytics/react';
 // import Analytics from '@/components/Analytics';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
@@ -33,7 +34,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <Header />
           <LenisProvider>
-            <main>{children}</main>
+            <main>
+              {children}
+              <Analytics />
+            </main>
           </LenisProvider>
           <Footer />
           {/* <LogRocket />
