@@ -18,7 +18,7 @@ export default function Tags() {
       </div>
       <div className="flex flex-wrap gap-3">
         {Object.keys(tags).length === 0 && 'No tags found.'}
-        {sortedTags.map((t) => {
+        {sortedTags.map(t => {
           return (
             <div key={t} className="mb-5 flex items-center">
               <Tag text={t} />

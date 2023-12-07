@@ -69,9 +69,7 @@ export default async function NowPlaying() {
           {nowPlaying.title}
         </a>
         <span className="mx-2 text-gray-500 dark:text-gray-300">{' – '}</span>
-        <p className="inline-block truncate text-gray-500 dark:text-gray-300">
-          {nowPlaying.artist}
-        </p>
+        <p className="inline-block truncate text-gray-500 dark:text-gray-300">{nowPlaying.artist}</p>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ export const metadata = {
 };
 
 export default function Blog() {
-  const activePosts = allBlogs.filter((p) => p.draft === false);
+  const activePosts = allBlogs.filter(p => p.draft === false);
   const posts = sortedBlogPost(activePosts);
   const initialDisplayPosts = posts.slice(0, POSTS_PER_PAGE);
   const pagination = {
@@ -20,12 +20,7 @@ export default function Blog() {
 
   return (
     <MainLayout>
-      <ListLayout
-        posts={posts}
-        initialDisplayPosts={initialDisplayPosts}
-        pagination={pagination}
-        title="Blog"
-      />
+      <ListLayout posts={posts} initialDisplayPosts={initialDisplayPosts} pagination={pagination} title="Blog" />
     </MainLayout>
   );
 }

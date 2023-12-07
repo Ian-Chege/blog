@@ -9,7 +9,7 @@ export const metadata = {
 };
 
 export default function Uses() {
-  const author = allAuthors.find((p) => p.slug === 'uses');
+  const author = allAuthors.find(p => p.slug === 'uses');
 
   if (!author) {
     return null;

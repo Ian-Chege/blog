@@ -7,12 +7,12 @@ import remarkCodeTitles from './lib/remark-code-title';
 import { extractTocHeadings } from './lib/remark-toc-headings';
 
 const computedFields: ComputedFields = {
-  readingTime: { type: 'json', resolve: (doc) => readingTime(doc.body.raw) },
+  readingTime: { type: 'json', resolve: doc => readingTime(doc.body.raw) },
   slug: {
     type: 'string',
-    resolve: (doc) => doc._raw.flattenedPath.replace(/^.+?(\/)/, ''),
+    resolve: doc => doc._raw.flattenedPath.replace(/^.+?(\/)/, ''),
   },
-  toc: { type: 'string', resolve: (doc) => extractTocHeadings(doc.body.raw) },
+  toc: { type: 'string', resolve: doc => extractTocHeadings(doc.body.raw) },
 };
 
 export const Blog = defineDocumentType(() => ({

@@ -18,10 +18,7 @@ export default function Pagination({ totalPages, currentPage }: Props) {
           </button>
         )}
         {prevPage && (
-          <Link
-            href={currentPage - 1 === 1 ? `/blog/` : `/blog/page/${currentPage - 1}`}
-            className="underline-magical"
-          >
+          <Link href={currentPage - 1 === 1 ? `/blog/` : `/blog/page/${currentPage - 1}`} className="underline-magical">
             <button>Previous</button>
           </Link>
         )}

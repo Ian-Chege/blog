@@ -46,8 +46,14 @@ export default function ProjectPreview({ modal, projects }: ProjectModalProps) {
       });
 
       // Move cursor
-      const xMoveCursor = gsap.quickTo(cursor.current, 'left', { duration: 0.5, ease: 'power3' });
-      const yMoveCursor = gsap.quickTo(cursor.current, 'top', { duration: 0.5, ease: 'power3' });
+      const xMoveCursor = gsap.quickTo(cursor.current, 'left', {
+        duration: 0.5,
+        ease: 'power3',
+      });
+      const yMoveCursor = gsap.quickTo(cursor.current, 'top', {
+        duration: 0.5,
+        ease: 'power3',
+      });
 
       // Move cursor label
       const xMoveCursorLabel = gsap.quickTo(cursorLabel.current, 'left', {
@@ -59,7 +65,7 @@ export default function ProjectPreview({ modal, projects }: ProjectModalProps) {
         ease: 'power3',
       });
 
-      window.addEventListener('mousemove', (e) => {
+      window.addEventListener('mousemove', e => {
         const { pageX, pageY } = e;
         xMoveContainer(pageX);
         yMoveContainer(pageY);
@@ -82,7 +88,10 @@ export default function ProjectPreview({ modal, projects }: ProjectModalProps) {
       >
         <div
           className="absolute h-full w-full"
-          style={{ top: index * -100 + '%', transition: 'top 0.6s cubic-bezier(0.76, 0, 0.24, 1)' }}
+          style={{
+            top: index * -100 + '%',
+            transition: 'top 0.6s cubic-bezier(0.76, 0, 0.24, 1)',
+          }}
         >
           {projects.map((project, index) => {
             const { src, color } = project;
@@ -92,13 +101,7 @@ export default function ProjectPreview({ modal, projects }: ProjectModalProps) {
                 style={{ backgroundColor: color }}
                 key={`modal_${index}`}
               >
-                <Image
-                  className="h-auto"
-                  src={`/static/images/project/${src}`}
-                  width={300}
-                  height={300}
-                  alt="image"
-                />
+                <Image className="h-auto" src={`/static/images/project/${src}`} width={300} height={300} alt="image" />
               </div>
             );
           })}

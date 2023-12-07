@@ -54,9 +54,7 @@ export default function MobileNav() {
           initial="exit"
           exit="exit"
           variants={variants}
-          className={classNames(
-            'fixed inset-0 z-20 h-full w-full bg-white opacity-95 dark:bg-black'
-          )}
+          className={classNames('fixed inset-0 z-20 h-full w-full bg-white opacity-95 dark:bg-black')}
         >
           <header className="flex justify-end py-5 px-4">
             <button

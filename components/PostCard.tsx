@@ -27,14 +27,12 @@ export default function PostCard({ posts, showTags = true }: PostCardProps) {
               <div className="space-y-3 xl:col-span-4">
                 <span className="text-2xl font-bold leading-8 tracking-tight">
                   <Link href={`/blog/${slug}`}>
-                    <span className="text-primary-500 duration-300 hover:text-primary-400">
-                      {title}
-                    </span>
+                    <span className="text-primary-500 duration-300 hover:text-primary-400">{title}</span>
                   </Link>
                 </span>
                 {showTags && tags && (
                   <div className="flex flex-wrap gap-3">
-                    {tags.map((tag) => (
+                    {tags.map(tag => (
                       <Tag key={tag} text={tag} />
                     ))}
                   </div>

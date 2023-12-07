@@ -1,18 +1,18 @@
-import { MDXLayoutRenderer } from '@/components/MDXComponents'
-import AuthorLayout from '@/layouts/MDX/AuthorLayout'
-import MainLayout from '@/layouts/MainLayout'
-import { allAuthors } from 'contentlayer/generated'
+import { MDXLayoutRenderer } from '@/components/MDXComponents';
+import AuthorLayout from '@/layouts/MDX/AuthorLayout';
+import MainLayout from '@/layouts/MainLayout';
+import { allAuthors } from 'contentlayer/generated';
 
 export const metadata = {
   title: 'About - Ian.C',
   description: 'About me - Ian.C',
-}
+};
 
 export default function About() {
-  const author = allAuthors.find((p) => p.slug === 'about')
+  const author = allAuthors.find(p => p.slug === 'about');
 
   if (!author) {
-    return null
+    return null;
   }
 
   return (
@@ -21,5 +21,5 @@ export default function About() {
         <MDXLayoutRenderer content={author} />
       </AuthorLayout>
     </MainLayout>
-  )
+  );
 }

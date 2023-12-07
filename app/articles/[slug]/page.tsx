@@ -7,13 +7,9 @@ import { coreContent, formatBlogLink, sortedBlogPost } from '@/lib/utils/content
 import { allBlogs } from 'contentlayer/generated';
 import { Metadata } from 'next';
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const slug = params.slug;
-  const post = allBlogs.find((p) => p.slug === slug);
+  const post = allBlogs.find(p => p.slug === slug);
 
   if (!post) {
     return {};
@@ -29,10 +25,10 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
   const slug = params.slug;
   const sortedPosts = sortedBlogPost(allBlogs);
 
-  const post = sortedPosts.find((p) => p.slug === slug);
+  const post = sortedPosts.find(p => p.slug === slug);
   const author = post?.author || ['default'];
 
-  const postIndex = sortedPosts.findIndex((p) => p.slug === slug);
+  const postIndex = sortedPosts.findIndex(p => p.slug === slug);
   const prevContent = sortedPosts[postIndex + 1] || null;
   const prev = prevContent ? coreContent(prevContent) : null;
   const nextContent = sortedPosts[postIndex - 1] || null;

@@ -8,7 +8,7 @@ export function dateSortDesc(a: string, b: string) {
 }
 
 export function sortedBlogPost(allBlogs: Blog[]) {
-  return allBlogs.sort((a, b) => dateSortDesc(a.date, b.date)).filter((p) => p.draft === false);
+  return allBlogs.sort((a, b) => dateSortDesc(a.date, b.date)).filter(p => p.draft === false);
 }
 
 type ConvertUndefined<T> = OrNull<{
@@ -24,10 +24,7 @@ type ConvertPick<T> = ConvertUndefined<T> & PickRequired<T>;
  *
  * https://github.com/contentlayerdev/contentlayer/issues/24
  */
-export const pick = <Obj, Keys extends keyof Obj>(
-  obj: Obj,
-  keys: Keys[]
-): ConvertPick<{ [K in Keys]: Obj[K] }> => {
+export const pick = <Obj, Keys extends keyof Obj>(obj: Obj, keys: Keys[]): ConvertPick<{ [K in Keys]: Obj[K] }> => {
   return keys.reduce((acc, key) => {
     acc[key] = obj[key] ?? null;
     return acc;
@@ -37,7 +34,7 @@ export const pick = <Obj, Keys extends keyof Obj>(
 
 export const omit = <Obj, Keys extends keyof Obj>(obj: Obj, keys: Keys[]): Omit<Obj, Keys> => {
   const result = Object.assign({}, obj);
-  keys.forEach((key) => {
+  keys.forEach(key => {
     delete result[key];
   });
   return result;
@@ -50,15 +47,15 @@ export function coreContent<T extends DocumentTypes>(content: T) {
 }
 
 export function allCoreContent<T extends DocumentTypes>(contents: T[]) {
-  return contents.map((c) => coreContent(c));
+  return contents.map(c => coreContent(c));
 }
 
 export function getAllTags(allBlogs: Blog[]) {
   const tagCount: Record<string, number> = {};
   // Iterate through each post, putting all found tags into `tags`
-  allBlogs.forEach((file) => {
+  allBlogs.forEach(file => {
     if (file.tags && file.draft !== true) {
-      file.tags.forEach((tag) => {
+      file.tags.forEach(tag => {
         const formattedTag = kebabCase(tag);
         if (formattedTag in tagCount) {
           tagCount[formattedTag] += 1;
@@ -74,9 +71,7 @@ export function getAllTags(allBlogs: Blog[]) {
 
 export type BlogLink = { slug: string; title: string };
 
-export function formatBlogLink(
-  blog: Omit<Blog, 'body' | '_raw' | '_id'> | null
-): BlogLink | undefined {
+export function formatBlogLink(blog: Omit<Blog, 'body' | '_raw' | '_id'> | null): BlogLink | undefined {
   if (blog) {
     return {
       title: blog?.title,

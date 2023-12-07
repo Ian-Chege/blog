@@ -13,10 +13,7 @@ export const metadata = {
 export default function BlogPage({ params }: { params: { page: string } }) {
   const pageNumber = parseInt(params.page);
   const posts = sortedBlogPost(allBlogs);
-  const initialDisplayPosts = posts.slice(
-    POSTS_PER_PAGE * (pageNumber - 1),
-    POSTS_PER_PAGE * pageNumber
-  );
+  const initialDisplayPosts = posts.slice(POSTS_PER_PAGE * (pageNumber - 1), POSTS_PER_PAGE * pageNumber);
   const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
 
   const pagination = {
@@ -30,12 +27,7 @@ export default function BlogPage({ params }: { params: { page: string } }) {
 
   return (
     <MainLayout>
-      <ListLayout
-        posts={posts}
-        initialDisplayPosts={initialDisplayPosts}
-        pagination={pagination}
-        title="All Posts"
-      />
+      <ListLayout posts={posts} initialDisplayPosts={initialDisplayPosts} pagination={pagination} title="All Posts" />
     </MainLayout>
   );
 }

@@ -32,11 +32,7 @@ const ThemeSwitch = () => {
         fill="currentColor"
         className="text-gray-900 dark:text-gray-100"
       >
-        {mounted && (theme === 'dark' || resolvedTheme === 'dark') ? (
-          <BsSunFill size={16} />
-        ) : (
-          <BsMoonFill size={18} />
-        )}
+        {mounted && (theme === 'dark' || resolvedTheme === 'dark') ? <BsSunFill size={16} /> : <BsMoonFill size={18} />}
       </svg>
     </motion.button>
   );

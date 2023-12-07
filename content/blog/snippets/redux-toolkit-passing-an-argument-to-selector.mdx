@@ -23,18 +23,18 @@ export const calendarProjectOptionsSelector = createSelector(
   (_: RootState, projectId: string) => projectId,
   (calendars, projectId) => {
     const options: Option[] = calendars
-      .filter((c) => c.projectId === projectId)
-      .map((p) => ({
+      .filter(c => c.projectId === projectId)
+      .map(p => ({
         value: p.id,
         label: p.name,
         tag: {
           label: p.name,
           color: p.color,
         },
-      }))
-    return options
+      }));
+    return options;
   }
-)
+);
 ```
 
 ## How to use it
@@ -42,9 +42,7 @@ export const calendarProjectOptionsSelector = createSelector(
 Just pass `projectId` as a second argument to the selector
 
 ```tsx
-const calendarOptions = useSelector((state: RootState) =>
-  calendarProjectOptionsSelector(state, projectId)
-)
+const calendarOptions = useSelector((state: RootState) => calendarProjectOptionsSelector(state, projectId));
 ```
 
 ### Passing multiple values to a selector
@@ -59,11 +57,11 @@ export const groupedPackagesSelector = createSelector(
     projectId,
   }),
   (packages, { ownerId, projectId }) => {
-    const groupedPackages: GroupedPackage[] = []
+    const groupedPackages: GroupedPackage[] = [];
 
     packages
-      .filter((p) => p.projectId === projectId)
-      .forEach((p) => {
+      .filter(p => p.projectId === projectId)
+      .forEach(p => {
         if (!p.locked || (p.locked && ownerId === p.owner.id)) {
           groupedPackages.push({
             label: p.name,
@@ -71,13 +69,13 @@ export const groupedPackagesSelector = createSelector(
             color: p.color,
             group: p.locked ? PackageGroup.Locked : PackageGroup.Public,
             code: p.code,
-          })
+          });
         }
-      })
+      });
 
-    return groupedPackages
+    return groupedPackages;
   }
-)
+);
 ```
 
 ## How to use it
@@ -85,9 +83,7 @@ export const groupedPackagesSelector = createSelector(
 Just pass `projectId` and `ownerId` in a object as a second argument to the selector
 
 ```tsx
-const groupedPackages = useSelector((state: RootState) =>
-  groupedPackagesSelector(state, { ownerId, projectId })
-)
+const groupedPackages = useSelector((state: RootState) => groupedPackagesSelector(state, { ownerId, projectId }));
 ```
 
 ## Conclusion

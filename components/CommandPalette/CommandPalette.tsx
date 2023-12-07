@@ -14,7 +14,7 @@ export default function CommandPalette() {
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === 'k' && e.metaKey) {
-        setOpen((open) => !open);
+        setOpen(open => !open);
       }
     };
 
@@ -31,40 +31,19 @@ export default function CommandPalette() {
 
           <Command.Group heading="General">
             {generalOptions.map(({ id, name, onSelect, icon }) => (
-              <CommandItem
-                id={id}
-                key={id}
-                name={name}
-                icon={icon}
-                setOpen={setOpen}
-                onSelect={onSelect}
-              />
+              <CommandItem id={id} key={id} name={name} icon={icon} setOpen={setOpen} onSelect={onSelect} />
             ))}
           </Command.Group>
 
           <Command.Group heading="Pages">
             {pageOptions.map(({ id, name, icon, onSelect }) => (
-              <CommandItem
-                id={id}
-                key={id}
-                name={name}
-                icon={icon}
-                setOpen={setOpen}
-                onSelect={onSelect}
-              />
+              <CommandItem id={id} key={id} name={name} icon={icon} setOpen={setOpen} onSelect={onSelect} />
             ))}
           </Command.Group>
 
           <Command.Group heading="Blogs">
             {blogOptions.map(({ id, name, onSelect, icon }) => (
-              <CommandItem
-                id={id}
-                key={id}
-                name={name}
-                icon={icon}
-                setOpen={setOpen}
-                onSelect={onSelect}
-              />
+              <CommandItem id={id} key={id} name={name} icon={icon} setOpen={setOpen} onSelect={onSelect} />
             ))}
           </Command.Group>
         </Command.List>

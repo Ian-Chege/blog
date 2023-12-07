@@ -24,12 +24,7 @@ export default function Footer() {
             </ul>
             <ul className="flex cursor-pointer items-center space-x-5">
               <li>
-                <a
-                  href={siteMetadata.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="linkedin"
-                >
+                <a href={siteMetadata.linkedin} target="_blank" rel="noreferrer" aria-label="linkedin">
                   <AiFillLinkedin className="sm:text-lg" />
                 </a>
               </li>
@@ -39,22 +34,12 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a
-                  href={siteMetadata.twitter}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="twitter"
-                >
+                <a href={siteMetadata.twitter} target="_blank" rel="noreferrer" aria-label="twitter">
                   <FaTwitter className="sm:text-lg" />
                 </a>
               </li>
               <li>
-                <a
-                  href={siteMetadata.spotify}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="spotify"
-                >
+                <a href={siteMetadata.spotify} target="_blank" rel="noreferrer" aria-label="spotify">
                   <FaSpotify className="sm:text-lg" />
                 </a>
               </li>

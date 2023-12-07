@@ -15,14 +15,13 @@ interface Props {
 
 export default function ListLayout({ posts, title, initialDisplayPosts = [], pagination }: Props) {
   const [searchValue, setSearchValue] = useState('');
-  const filteredBlogPosts = posts.filter((post) => {
+  const filteredBlogPosts = posts.filter(post => {
     const searchContent = post.title + post.summary + post.tags?.join(' ');
     return searchContent.toLowerCase().includes(searchValue.toLowerCase());
   });
 
   // If initialDisplayPosts exist, display it if no searchValue is specified.
-  const displayPosts =
-    initialDisplayPosts.length > 0 && !searchValue ? initialDisplayPosts : filteredBlogPosts;
+  const displayPosts = initialDisplayPosts.length > 0 && !searchValue ? initialDisplayPosts : filteredBlogPosts;
 
   return (
     <>
@@ -34,7 +33,7 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
           <input
             aria-label="Search articles"
             type="text"
-            onChange={(e) => setSearchValue(e.target.value)}
+            onChange={e => setSearchValue(e.target.value)}
             placeholder="Search articles"
             className="block w-full rounded-md border-0 bg-gray-200 bg-opacity-50 px-4 py-3 text-gray-900 focus:border-sky-500 focus:ring-sky-500 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100"
           />

@@ -9,9 +9,7 @@ n.prototype = {
     this.amplitude = e.amplitude || 1;
   },
   update: function () {
-    return (
-      (this.phase += this.frequency), (e = this.offset + Math.sin(this.phase) * this.amplitude)
-    );
+    return (this.phase += this.frequency), (e = this.offset + Math.sin(this.phase) * this.amplitude);
   },
   value: function () {
     return e;
@@ -78,8 +76,7 @@ Line.prototype = {
 function onMousemove(e) {
   function o() {
     lines = [];
-    for (var e = 0; e < E.trails; e++)
-      lines.push(new Line({ spring: 0.45 + (e / E.trails) * 0.025 }));
+    for (var e = 0; e < E.trails; e++) lines.push(new Line({ spring: 0.45 + (e / E.trails) * 0.025 }));
   }
   function c(e) {
     e.touches

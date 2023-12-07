@@ -4,12 +4,12 @@ import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = siteMetadata.siteUrl;
-  const blogRoutes = allBlogs.map((post) => ({
+  const blogRoutes = allBlogs.map(post => ({
     url: `${siteUrl}/${post.slug}`,
     lastModified: post.lastmod || post.date,
   }));
 
-  const routes = ['', 'blog', 'projects', 'tags', 'about', 'uses'].map((route) => ({
+  const routes = ['', 'blog', 'projects', 'tags', 'about', 'uses'].map(route => ({
     url: `${siteUrl}/${route}`,
     lastModified: new Date().toISOString().split('T')[0],
   }));

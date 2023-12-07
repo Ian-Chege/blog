@@ -1,5 +1,5 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
-const colors = require('tailwindcss/colors')
+const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
 
 module.exports = {
   mode: 'jit',
@@ -97,7 +97,7 @@ module.exports = {
         yellow: colors.amber,
         purple: colors.violet,
       },
-      typography: (theme) => ({
+      typography: theme => ({
         DEFAULT: {
           css: {
             color: theme('colors.gray.700'),
@@ -228,4 +228,4 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('tailwind-scrollbar')({ nocompatible: true }),
   ],
-}
+};

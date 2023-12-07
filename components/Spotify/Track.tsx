@@ -18,9 +18,7 @@ export default function Track({ track, ranking }: TrackProps) {
         >
           {track.title}
         </a>
-        <p className="mb-4 w-60 truncate text-gray-500 dark:text-gray-400 sm:w-96 md:w-full">
-          {track.artist}
-        </p>
+        <p className="mb-4 w-60 truncate text-gray-500 dark:text-gray-400 sm:w-96 md:w-full">{track.artist}</p>
       </div>
     </div>
   );

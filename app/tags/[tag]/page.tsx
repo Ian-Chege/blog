@@ -12,9 +12,7 @@ export const metadata = {
 export default function Tag({ params }: { params: { tag: string } }) {
   const { tag } = params;
   const posts = allCoreContent(
-    allBlogs.filter(
-      (post) => post.draft !== true && post.tags?.map((t) => kebabCase(t)).includes(tag)
-    )
+    allBlogs.filter(post => post.draft !== true && post.tags?.map(t => kebabCase(t)).includes(tag))
   );
 
   // Capitalize first letter and convert space to dash

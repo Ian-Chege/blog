@@ -20,12 +20,9 @@ export default function Header() {
           <div>
             <Link
               href="/"
-              className={classNames(
-                'horizontal-underline hidden text-3xl font-extrabold sm:block',
-                {
-                  'horizontal-underline-active': pathName === '/',
-                }
-              )}
+              className={classNames('horizontal-underline hidden text-3xl font-extrabold sm:block', {
+                'horizontal-underline-active': pathName === '/',
+              })}
               aria-label="d."
             >
               td.
@@ -45,9 +42,7 @@ export default function Header() {
                     })}
                     aria-label={title}
                   >
-                    <span className="font-semibold tracking-wide text-gray-900 dark:text-gray-100">
-                      {title}
-                    </span>
+                    <span className="font-semibold tracking-wide text-gray-900 dark:text-gray-100">{title}</span>
                   </Link>
                 );
               })}

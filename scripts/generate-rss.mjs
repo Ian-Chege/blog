@@ -8,9 +8,9 @@ import { allBlogs } from '../.contentlayer/generated/index.mjs';
 export async function getAllTags() {
   const tagCount = {};
   // Iterate through each post, putting all found tags into `tags`
-  allBlogs.forEach((file) => {
+  allBlogs.forEach(file => {
     if (file.tags && file.draft !== true) {
-      file.tags.forEach((tag) => {
+      file.tags.forEach(tag => {
         const formattedTag = GithubSlugger.slug(tag);
         if (formattedTag in tagCount) {
           tagCount[formattedTag] += 1;
@@ -24,7 +24,7 @@ export async function getAllTags() {
   return tagCount;
 }
 
-const generateRssItem = (post) => `
+const generateRssItem = post => `
   <item>
     <guid>${siteMetadata.siteUrl}/blog/${post.slug}</guid>
     <title>${escape(post.title)}</title>
@@ -32,7 +32,7 @@ const generateRssItem = (post) => `
     ${post.summary && `<description>${escape(post.summary)}</description>`}
     <pubDate>${new Date(post.date).toUTCString()}</pubDate>
     <author>${siteMetadata.email} (${siteMetadata.author})</author>
-    ${post.tags && post.tags.map((t) => `<category>${t}</category>`).join('')}
+    ${post.tags && post.tags.map(t => `<category>${t}</category>`).join('')}
   </item>
 `;
 
@@ -65,7 +65,7 @@ async function generate() {
     const tags = await getAllTags();
     for (const tag of Object.keys(tags)) {
       const filteredPosts = allBlogs.filter(
-        (post) => post.draft !== true && post.tags.map((t) => GithubSlugger.slug(t)).includes(tag)
+        post => post.draft !== true && post.tags.map(t => GithubSlugger.slug(t)).includes(tag)
       );
       const rss = generateRss(filteredPosts, `tags/${tag}/feed.xml`);
       const rssPath = path.join('public', 'tags', tag);
