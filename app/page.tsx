@@ -1,17 +1,30 @@
-import { allPosts } from "@/.contentlayer/generated"
-import Link from "next/link"
+import { Suspense } from 'react';
 
-export default function Home() {
+import { allBlogs } from 'contentlayer/generated';
+import Hero from '@/components/Hero';
+import Intro from '@/components/Intro';
+import { ScrollProvider } from '@/components/Providers/ScrollProvider';
+import RecentPosts from '@/components/RecentPosts';
+import SectionContainer from '@/components/SectionContainer';
+import TopTracks from '@/components/Spotify/TopTracks';
+import Works from '@/components/Work/Works';
+import { allCoreContent, sortedBlogPost } from '@/lib/utils/contentlayer';
+
+export default function Page() {
+  const sortedPosts = sortedBlogPost(allBlogs);
+  const posts = allCoreContent(sortedPosts);
+
   return (
-    <div className="prose dark:prose-invert">
-      {allPosts.map((post) => (
-        <article key={post._id}>
-          <Link href={post.slug}>
-            <h2>{post.title}</h2>
-          </Link>
-          {post.description && <p>{post.description}</p>}
-        </article>
-      ))}
-    </div>
-  )
+    <ScrollProvider>
+      <Hero />
+      <Intro />
+      <Works />
+      <SectionContainer>
+        <RecentPosts posts={posts} />
+        <Suspense fallback="loading..">
+          <TopTracks />
+        </Suspense>
+      </SectionContainer>
+    </ScrollProvider>
+  );
 }
