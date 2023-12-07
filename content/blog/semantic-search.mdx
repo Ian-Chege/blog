@@ -1,0 +1,82 @@
+---
+title: 'Semantic Search'
+date: '2023-12-07'
+tags: ['Semantic Search', 'AI', 'Search']
+draft: false
+author: 'Ian.C'
+summary: 'Get started with semantic search using JavaScript and the OpenAI API. Learn how this revolutionary technology uses embeddings and AI to understand the intent behind queries, offering a more context-aware and intuitive approach to search.'
+---
+
+# Semantic Search
+
+### Overview
+
+Unlike traditional search engines, semantic search engines don't just look for keywords in a document. They look for the meaning of the document and try to find documents that are similar in meaning.
+
+This is enabled by the concept of embeddings. Embeddings are a way to represent words and documents as vectors in a high-dimensional space. Similar words and documents are closer together in this space.
+
+Semantic search tries to understand the intent behind the query. It's not just about the words you use, but the meaning behind them.
+
+![Embedding](/static/images/embedding.png)
+
+### How it works
+
+> Imports
+
+```JavaScript
+import 'dotenv/config'
+import { Document } from 'langchain/document'
+import { MemoryVectorStore } from 'langchain/vectorstores/memory'
+import { OpenAIEmbeddings } from 'langchain/embeddings/openai'
+
+```
+
+- `dotenv/config`: Loads environment variables from a `.env` file.
+- `langchain/document`: Imports the `Document` class, used to structure data for vector indexing.
+- `langchain/vectorstores/memory`: Imports the `MemoryVectorStore`, an in-memory storage for vectors (semantic representations of data).
+- `langchain/embeddings/openai`: Imports the `OpenAIEmbeddings`, which interfaces with OpenAI to obtain semantic embeddings for data.
+
+> Create Store Function
+
+```JavaScript
+
+const createStore = () =>
+  MemoryVectorStore.fromDocuments(
+    movies.map(
+      (movie) =>
+        new Document({
+          pageContent: `Title: ${movie.title}\n${movie.description}`,
+          metadata: { source: movie.id, title: movie.title },
+        })
+    ),
+    new OpenAIEmbeddings()
+  )
+
+```
+
+> Search Function
+
+```JavaScript
+export const search = async (query, count = 1) => {
+  const store = await createStore()
+  return store.similaritySearch(query, count)
+}
+```
+
+> Execute a search
+
+```JavaScript
+console.log(await search('For kids...'))
+```
+
+`node search.js`
+
+![Chat](/static/images/search.png)
+
+### Conclusion
+
+In the realm of search technology, semantic search stands as a game-changer. By focusing on the meaning behind words rather than the words themselves, it offers a more intuitive and context-aware approach to information retrieval. 
+
+The use of embeddings to represent words and documents in high-dimensional space allows for the identification of similar content based on semantic similarity. This article has provided a glimpse into the workings of semantic search, demonstrating how to create a semantic search engine using JavaScript and the OpenAI API.
+
+ As we move forward, the adoption and refinement of semantic search will undoubtedly continue to revolutionize how we interact with information.
