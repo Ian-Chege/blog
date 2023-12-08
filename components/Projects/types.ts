@@ -3,7 +3,7 @@ export interface Project {
   src: string;
   color: string;
   url: string;
-  role: string;
+  status?: string;
 }
 
 export interface ProjectModal {

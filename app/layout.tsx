@@ -34,14 +34,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <Header />
           <LenisProvider>
-            <main>
-              {children}
-              <Analytics />
-            </main>
+            <main>{children}</main>
           </LenisProvider>
           <Footer />
           {/* <LogRocket />
           <Analytics /> */}
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>

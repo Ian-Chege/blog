@@ -23,7 +23,13 @@ export default function Projects() {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.6, delay: index / 10 }}
         >
-          <ProjectItem index={index} title={project.title} url={project.url} role={project.role} setModal={setModal} />
+          <ProjectItem
+            index={index}
+            title={project.title}
+            url={project.url}
+            status={project.status}
+            setModal={setModal}
+          />
         </motion.div>
       ))}
       {breakpoint === 'desktop' && <ProjectPreview modal={modal} projects={projects} />}

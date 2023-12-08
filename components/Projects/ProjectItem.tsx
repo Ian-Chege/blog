@@ -4,11 +4,11 @@ interface ProjectProps {
   index: number;
   title: string;
   url: string;
-  role: string;
+  status?: string;
   setModal: (modal: ProjectModal) => void;
 }
 
-export default function ProjectItem({ index, title, url, role, setModal }: ProjectProps) {
+export default function ProjectItem({ index, title, url, status, setModal }: ProjectProps) {
   return (
     <a
       href={url}
@@ -24,7 +24,7 @@ export default function ProjectItem({ index, title, url, role, setModal }: Proje
     >
       <h2 className="text-2xl transition-all group-hover:-translate-x-3 group-hover:scale-110 sm:text-6xl">{title}</h2>
       <p className="text-sm font-light transition-all group-hover:translate-x-3 group-hover:scale-110 sm:text-lg">
-        {role}
+        {status}
       </p>
     </a>
   );
