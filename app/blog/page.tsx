@@ -20,7 +20,7 @@ export default function Blog() {
 
   return (
     <MainLayout>
-      <ListLayout posts={posts} initialDisplayPosts={initialDisplayPosts} pagination={pagination} title="Blog" />
+      <ListLayout posts={posts} initialDisplayPosts={initialDisplayPosts} pagination={pagination} title="Blogs" />
     </MainLayout>
   );
 }
