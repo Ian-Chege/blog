@@ -1,0 +1,55 @@
+---
+title: 'JavaScript Virtual Machine: A look into Inline Caching'
+date: '2024-01-04'
+tags: ['JavaScript', 'VM', 'Inline Caching']
+draft: false
+author: 'Ian.C'
+summary: 'Explore the inner workings of the JavaScript VM with a deep dive into Inline Caching. Understand how Inline Caching optimizes JS execution within the VM, enhancing performance and efficiency.'
+---
+
+### Introduction
+
+JavaScript, a dynamic, high-level language, is interpreted by JavaScript Virtual Machines (VMs) like V8 (Chrome), SpiderMonkey (Firefox), and JavaScriptCore (Safari). These VMs convert JavaScript code into machine code at runtime, a process known as Just-In-Time (JIT) compilation. One of the critical optimization techniques used in this process is Inline Caching.
+
+### Inline Caching
+
+Inline caching is an optimization technique used to speed up property access on JS objects. When a property is accessed on an object for the first time, the VM has to perform a lookup to find the property’s location in memory. This lookup process can be time-consuming, especially for large objects or repeated property accesses.
+
+To optimize this, the VM uses Inline Caching. The first time a property is accessed, the VM stores the location of the property in an inline cache. If the same property is accessed again, the VM can retrieve the property’s value directly from the cache, bypassing the costly lookup process.
+
+### How it works
+
+JavaScript VMs use a concept called 'hidden classes' to optimize property access. A hidden class is a data structure that stores the location of an object’s properties in memory. When a new object is created, the VM assigns it a hidden class. If the object’s properties are modified, the VM creates a new hidden class for the object. This new hidden class will contain the location of the object’s properties, as well as the location of the modified property.
+
+This system allows the VM to optimize property access by storing the location of an object’s properties in the object’s hidden class. When a property is accessed, the VM can retrieve the property’s location directly from the object’s hidden class, bypassing the costly lookup process. However, it also means that changing the order in which properties are added to an object can result in different hidden classes, leading to less efficient caching.
+
+Inline Caches can be in one of three states: monomorphic, polymorphic, or megamorphic.
+
+A monomorphic inline cache has seen only one type of object. This is the most efficient state, as the VM knows exactly where to find the property in memory.
+A polymorphic inline cache has seen a few different types of objects. The VM has to check a few different places, but it’s still relatively efficient.
+A megamorphic inline cache has seen many different types of objects. At this point, the VM can’t make any assumptions about where to find the property, so it falls back to a standard lookup. This is the least efficient state.
+
+We have a very good example of Inline Caching, thanks to the course [The JavaScript VM](https://frontendmasters.com/courses/javascript-cpu-vm) by Miško Hevery. Let's take a look at the code below:
+
+![Inline Caching](/static/blog/inline-cache.webp)
+
+You can see that we have different objects with different shapes - such as `array1` that has only 1 object shape, `array2` has 2 object shapes, and `array3` has 3 object shapes, and so on.
+
+Looking at the benchmark results, we can see that the more object shapes we have, the slower the execution time. 
+
+For the 1st four objects, the execution time is almost similar - the bracket for the monomorphic and polymorphic objects is almost the same. However, for the megamorphic object, the execution time is much slower.
+
+And as we pass the threshold (1024 properties for the V8 engine), so for 10,000 - you basically bust the cache, deoptimizes, and goes back to the original lookup.
+
+If you look up the results also in [Deopt Explorer](https://github.com/microsoft/deoptexplorer-vscode) - a VS Code extension by Microsoft:
+
+![Deopt Explorer](/static/blog/deopt-explorer.webp)
+
+You can actually see on the left side under the `ICS` tab, the different states of the Inline Caching, starting from the 1st object - which was monomorphic, upto the last one which is megamorphic.
+
+### Conclusion
+
+Understanding Inline Caching and other optimization techniques used by JavaScript VMs can help developers write more efficient JavaScript code. By being mindful of how objects are created and used, developers can work with the VM, not against it, to ensure their code runs as quickly and efficiently as possible.
+
+You can also read this [article](https://devblogs.microsoft.com/typescript/introducing-deopt-explorer/) where the team working on Typescript 5.0 beta, worked on ways to improve the performance of the compiler to build projects faster, one of the ways being inline caching.
+
